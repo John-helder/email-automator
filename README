@@ -1,0 +1,10 @@
+# IA Email Analyzer
+
+API que analisa emails usando a IA Groq e retorna um JSON com informações de importância, prioridade e resumo.
+
+## Como rodar
+
+1. Clone o repositório:
+```bash
+git clone <repo_url>
+cd ia-email-analyzer

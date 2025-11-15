@@ -12,15 +12,6 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
 def analisar_email(texto: str):
-    """
-    Recebe um texto de email e retorna um dicionário com a análise:
-    {
-        "importante": bool,
-        "exige_resposta": bool,
-        "resumo_curto": str,
-        "prioridade": str
-    }
-    """
 
     prompt = f"""
     Analise o email abaixo e responda SOMENTE com um JSON válido, no formato:

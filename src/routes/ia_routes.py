@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from src.controllers.ia_controller import handle_ia_reaquest
+from src.services.auto_responder import gerar_resposta
+from src.controllers.ia_controller import handle_ia_request
 from src.controllers.email_controller import handle_email_analysis
 
 router = APIRouter()
@@ -11,10 +12,7 @@ class PromptRequest(BaseModel):
 
 @router.post("/ask")
 def ask_ia(payload: PromptRequest):
-    """
-    Recebe um prompt genérico e retorna a resposta da IA.
-    """
-    result = handle_ia_reaquest(payload.prompt)
+    result = handle_ia_request(payload.prompt)
     return {"response": result}
 
 
@@ -23,15 +21,7 @@ class EmailRequest(BaseModel):
 
 @router.post("/analyze-email")
 async def analyze_email(request: EmailRequest):
-    """
-    Recebe um email e retorna a análise em JSON:
-    {
-        "importante": bool,
-        "exige_resposta": bool,
-        "resumo_curto": str,
-        "prioridade": str
-    }
-    """
+    
     try:
         result = handle_email_analysis(request.texto)
         response = {
@@ -42,5 +32,13 @@ async def analyze_email(request: EmailRequest):
         }
         return {"resultado": response}
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
+    
+@router.post("/auto-reply")
+async def auto_reply(request: EmailRequest):
+    try:
+        resposta = gerar_resposta(request.texto)
+        return {"resposta": resposta}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")

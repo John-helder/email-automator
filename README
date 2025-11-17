@@ -1,8 +1,7 @@
-# IA Email Analyzer
+# Email Automator
 
 Automação inteligente de análise e resposta de e-mails usando FastAPI + Groq + NLP
-
-O IA Email Analyzer é um sistema completo em desenvolvimento com FastAPI, LLM (Groq / Llama 3) e um painel web simples em HTML/JS, que permite:
+O Email Automator é um sistema em desenvolvimento com FastAPI, LLM (Groq / Llama 3) e um painel web simples em HTML/JS, que permite:
 
 ✔️ Registrar e autenticar usuários
 ✔️ Fazer login com JWT
@@ -13,7 +12,9 @@ O IA Email Analyzer é um sistema completo em desenvolvimento com FastAPI, LLM (
 
 A inteligência artificial identifica o tipo de mensagem, classifica sua prioridade e gera uma resposta humanizada adequada ao contexto.
 
+--------------------------------------------------------------------------------------------------------------------------------------------
 🚀 Tecnologias Utilizadas
+
 # Backend
 
 Python 3.10+
@@ -30,8 +31,9 @@ Uvicorn
 HTML5 / CSS3
 JavaScript puro (sem frameworks)
 Armazenamento de token com localStorage
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 📌 Funcionalidades Principais (atualmente)
+
 🔐 Autenticação
 
 - Registro de usuário
@@ -68,12 +70,15 @@ Armazenamento de token com localStorage
 - Mostra o JSON formatado da análise
 - Botão de logout
 
+--------------------------------------------------------------------------------------------------------------------------------------------
+
 ⚙️ Como Rodar o Projeto
+
 1. Criar e ativar o ambiente virtual
 
 python -m venv venv (Cria o ambiente)
-source venv/bin/activate    # Linux/Mac (roda)
-venv\Scripts\activate       # Windows (roda)
+source venv/bin/activate    # Linux/Mac (ativador)
+venv\Scripts\activate       # Windows (ativador)
 
 2. Instalar dependências
 
@@ -95,6 +100,8 @@ uvicorn src.main:app --reload
 ➡️ Swagger: http://localhost:8000/docs
 ➡️ Dashboard: abra os arquivos HTML localmente (ex: Live Server)
 
+--------------------------------------------------------------------------------------------------------------------------------------------
+
 🧪 Rotas da API (principais)
 🔐 Autenticação
 
@@ -113,6 +120,7 @@ uvicorn src.main:app --reload
 | POST   | `/api/auto-reply`      | IA completa (Groq) gerando resposta inteligente      |
 | POST   | `/api/analyze-email`   | Análise estrutural (importância, prioridade, resumo) |
 
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 🧩 Próximas funcionalidades (planejamento)
 
@@ -123,7 +131,7 @@ uvicorn src.main:app --reload
 🔜 5. Painel completo com gráficos e registros (em análise também)
 🔜 6. Modo "Agente Autônomo" (IA responde sozinha emails reais)
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 📜 Licença
 
 Projeto de uso pessoal / estudo (pode adaptar como quiser).

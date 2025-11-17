@@ -1,10 +1,129 @@
 # IA Email Analyzer
 
-API que analisa emails usando a IA Groq e retorna um JSON com informações de importância, prioridade e resumo.
+Automação inteligente de análise e resposta de e-mails usando FastAPI + Groq + NLP
 
-## Como rodar
+O IA Email Analyzer é um sistema completo em desenvolvimento com FastAPI, LLM (Groq / Llama 3) e um painel web simples em HTML/JS, que permite:
 
-1. Clone o repositório:
-```bash
-git clone <repo_url>
-cd ia-email-analyzer
+✔️ Registrar e autenticar usuários
+✔️ Fazer login com JWT
+✔️ Analisar e-mails manuais (digitados ou enviados por arquivo)
+✔️ Classificar automaticamente o tipo de e-mail
+✔️ Gerar respostas automáticas inteligentes
+✔️ Exibir resultados em um dashboard autenticado
+
+A inteligência artificial identifica o tipo de mensagem, classifica sua prioridade e gera uma resposta humanizada adequada ao contexto.
+
+🚀 Tecnologias Utilizadas
+# Backend
+
+Python 3.10+
+FastAPI
+SQLAlchemy
+Groq API (Llama 3)
+passlib + argon2
+python-jose (JWT)
+Pydantic
+Uvicorn
+
+# Frontend
+
+HTML5 / CSS3
+JavaScript puro (sem frameworks)
+Armazenamento de token com localStorage
+
+📌 Funcionalidades Principais (atualmente)
+🔐 Autenticação
+
+- Registro de usuário
+- Login com geração de JWT
+- Proteção de rotas (ex: /api/ia/analisar-nlp)
+- Middleware de segurança via OAuth2
+
+🧠 Análise de e-mails
+
+- Classificação por NLP interno:
+- “Urgente”
+- “Suporte”
+- “Reunião”
+- “Improdutivo”
+- “Outros”
+- Resposta automática baseada na categoria
+- Retorno em formato JSON
+
+🤖 IA Avançada (Groq)
+
+- Leitura do conteúdo do e-mail
+- Identificação da intenção
+- Análise semântica
+- Geração de respostas humanizadas e contextuais
+- Resumo curto da mensagem
+- Sinalização de prioridade
+- Indicação se exige resposta
+
+🖥️ Dashboard Web
+
+- Login com token
+- Área protegida
+- Envio de texto ou arquivo .txt
+- Mostra o JSON formatado da análise
+- Botão de logout
+
+⚙️ Como Rodar o Projeto
+1. Criar e ativar o ambiente virtual
+
+python -m venv venv (Cria o ambiente)
+source venv/bin/activate    # Linux/Mac (roda)
+venv\Scripts\activate       # Windows (roda)
+
+2. Instalar dependências
+
+pip install -r requirements.txt
+
+3. Preencher o arquivo .env
+
+GROQ_API_KEY="crie seu token em: https://console.groq.com/keys" (cole o token aqui sem as aspas)
+JWT_SECRET= "Aqui voce pode criar uma chave aleatória como preferir"
+ACCESS_TOKEN_EXPIRE_MINUTES=60 (Padrao)
+REFRESH_TOKEN_EXPIRE_MINUTES=1440 (padrao)
+
+4. Rodar a API
+
+uvicorn src.main:app --reload
+
+# Acesse em:
+
+➡️ Swagger: http://localhost:8000/docs
+➡️ Dashboard: abra os arquivos HTML localmente (ex: Live Server)
+
+🧪 Rotas da API (principais)
+🔐 Autenticação
+
+| Método | Rota                 | Descrição              |
+| ------ | -------------------- | ---------------------- |
+| POST   | `/api/auth/register` | Cadastro               |
+| POST   | `/api/auth/login`    | Login                  |
+| GET    | `/api/auth/me`       | Retorna usuário logado |
+
+
+🧠 IA / NLP
+
+| Método | Rota                   | Descrição                                            |
+| ------ | ---------------------- | ---------------------------------------------------- |
+| POST   | `/api/ia/analisar-nlp` | Classificação e resposta baseada em categorias       |
+| POST   | `/api/auto-reply`      | IA completa (Groq) gerando resposta inteligente      |
+| POST   | `/api/analyze-email`   | Análise estrutural (importância, prioridade, resumo) |
+
+
+🧩 Próximas funcionalidades (planejamento)
+
+🔜 1. Recebimento automático de e-mails externos (IMAP)
+🔜 2. Fila de processamento de e-mails
+🔜 3. Envio automático de respostas via SMTP
+🔜 4. Histórico de análises por usuário (em análise ainda)
+🔜 5. Painel completo com gráficos e registros (em análise também)
+🔜 6. Modo "Agente Autônomo" (IA responde sozinha emails reais)
+
+
+📜 Licença
+
+Projeto de uso pessoal / estudo (pode adaptar como quiser).

@@ -5,7 +5,7 @@ def handle_email_analysis(texto: str):
   
     result = analisar_email(texto)
     
-    # Garante que o resultado sempre tenha todas as chaves esperadas
+    
     response = {
         "importante": result.get("importante", False),
         "exige_resposta": result.get("exige_resposta", False),

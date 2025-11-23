@@ -1,26 +1,38 @@
 from src.services.email_analyzer import analisar_email
 
-def gerar_resposta(email_texto: str) -> str:
+
+def gerar_resposta(email_texto: str) -> dict:
 
     analise = analisar_email(email_texto)
 
-    # Garantir que a análise tenha todos os campos
-    importante = analise.get("importante", False)
-    exige_resposta = analise.get("exige_resposta", False)
-    prioridade = analise.get("prioridade", "baixa")
+    if "erro" in analise:
+        return {
+            "erro": "Falha ao analisar email",
+            "detalhes": analise
+        }
 
-    # Definir a resposta automática
+    importante = analise["importante"]
+    exige_resposta = analise["exige_resposta"]
+    prioridade = analise["prioridade"]
+
     if importante and exige_resposta:
         resposta = (
-            f"Obrigado pelo seu email. Recebi sua mensagem e estou trabalhando para atender "
-            f"sua solicitação com prioridade {prioridade}."
+            f"Olá! Obrigado pelo seu email. "
+            f"Estou tratando sua solicitação com prioridade {prioridade}."
         )
     elif importante and not exige_resposta:
-        resposta = "Obrigado pelo email. Tomarei ciência das informações."
+        resposta = (
+            "Olá! Obrigado pelo seu email. "
+            "As informações foram recebidas e registradas."
+        )
     elif not importante and exige_resposta:
-        resposta = "Recebi sua mensagem e responderei assim que possível."
+        resposta = (
+            "Olá! Recebi sua mensagem e retornarei assim que possível."
+        )
     else:
-        resposta = "Mensagem recebida, obrigado."
+        resposta = "Olá! Mensagem recebida, obrigado."
 
-    return resposta
-
+    return {
+        "analise": analise,
+        "resposta_gerada": resposta
+    }
